@@ -1,0 +1,31 @@
+#!/bin/bash
+set -euo pipefail
+
+if [ ! -d ~/.local/pipx/venvs/jupyter-client ]; then
+  pipx install --include-deps jupyter_client
+  pipx inject --include-deps --include-apps jupyter_client ipykernel
+  pipx inject --include-deps jupyter_client pynvim
+else
+  pipx upgrade --include-injected jupyter_client
+fi
+
+mkdir -p ~/.local/share/jupyter/runtime
+
+
+if [ ! -x ~/.local/share/nvim/mason/bin/basedpyright ]; then
+  nvim --headless -c 'MasonInstall basedpyright' -c qall
+# else: mason doesn't have an upgrade-if-needed command to use
+fi
+
+
+# Listing optional jupyter deps but I don't think I'll use them.  If I want
+# real ipynb files or graphics I'll use a real gui.
+
+# image stuff:
+# pip install -U pnglatex  # render formulas
+# pip install -U pillow    # :MoltenImagePopup
+# pip install -U plotly kaleido
+
+# molten features:
+# pip install -U pyperclip   # molten_copy_output
+# pip install -U nbformat    # import/export output to .ipynb
