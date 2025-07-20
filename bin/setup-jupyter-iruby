@@ -1,0 +1,14 @@
+#!/bin/bash
+set -euo pipefail
+
+local opt=""
+[ -w "$(gem env gemdir)" ] ||
+  opt="--user-install"
+
+gem install $opt rubygems-requirements-system
+gem install $opt iruby
+
+iruby register --force
+
+# libzmq should be installed, it may prompt for sudo
+# be sure to add iruby to local gemfiles to use its features
