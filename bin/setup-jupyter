@@ -1,12 +1,11 @@
 #!/bin/bash
 set -euo pipefail
 
-if [ ! -d ~/.local/pipx/venvs/jupyter-client ]; then
-  pipx install --include-deps jupyter_client
-  pipx inject --include-deps --include-apps jupyter_client ipykernel
-  pipx inject --include-deps jupyter_client pynvim
+if [ ! -d ~/.local/pipx/venvs/ipykernel ]; then
+  pipx install --include-deps ipykernel
+  pipx inject ipykernel pynvim
 else
-  pipx upgrade --include-injected jupyter_client
+  pipx upgrade --include-injected ipykernel
 fi
 
 mkdir -p ~/.local/share/jupyter/runtime

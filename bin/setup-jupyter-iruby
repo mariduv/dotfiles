@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-local opt=""
+opt=""
 [ -w "$(gem env gemdir)" ] ||
   opt="--user-install"
 
