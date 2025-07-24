@@ -17,14 +17,14 @@ if [ -f "$USERPROFILE/.git_rev.txt" ]; then
   oldrev="$(cat "$USERPROFILE/.git_rev.txt")"
 fi
 
-newrev="$(dotfiles git show-ref -s HEAD)"
+newrev="$(dotfiles git rev-parse @)"
 
 if [[ $newrev = $oldrev ]]; then
   echo "no changes"
   exit 1
 fi
 
-dotfiles git archive --format=tar HEAD |
+dotfiles git archive --format=tar @ |
   tar x -C "$USERPROFILE" --show-transformed-names \
   --xform='s/^.config\/nvim\//AppData\/Local\/nvim\//' \
   --xform='s/^.gvimrc$/_gvimrc/' \
@@ -43,4 +43,4 @@ dotfiles git archive --format=tar HEAD |
 echo "$newrev" > "$USERPROFILE/.git_rev.txt"
 
 echo "~/userprofile updated to $newrev"
-git log --stat "$oldrev".."$newrev"
+dotfiles git log --stat "$oldrev".."$newrev"
