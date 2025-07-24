@@ -13,33 +13,34 @@ USERPROFILE="$(readlink ~/userprofile)"
 # Note to self, removed .lib, not really using it in windows
 
 oldrev=""
-if [ -f "$USERPROFILE/.hg_archival.txt" ]; then
-  oldrev="$(perl -ne 'print $1 if /^node: (\w+)/' "$USERPROFILE/.hg_archival.txt")"
+if [ -f "$USERPROFILE/.git_rev.txt" ]; then
+  oldrev="$(cat "$USERPROFILE/.git_rev.txt")"
 fi
 
-cd "$(hg root)"
-newrev="$(hg tip -T '{node}')"
+newrev="$(dotfiles git show-ref -s HEAD)"
 
 if [[ $newrev = $oldrev ]]; then
   echo "no changes"
   exit 1
 fi
 
-hg archive -t tar -p . -I .hg_archival.txt \
-  -I .config/nvim/ \
-  -I .config/wezterm/ \
-  -I .ctags \
-  -I .gvimrc \
-  -I .perltidyrc \
-  -I .replyrc \
-  -I .replyrc.pl \
-  -I .vim/ \
-  -I .vimrc \
-  - | tar x -C "$USERPROFILE" --show-transformed-names \
+dotfiles git archive --format=tar HEAD |
+  tar x -C "$USERPROFILE" --show-transformed-names \
   --xform='s/^.config\/nvim\//AppData\/Local\/nvim\//' \
   --xform='s/^.gvimrc$/_gvimrc/' \
   --xform='s/^.vim\//vimfiles\//' \
-  --xform='s/^.vimrc$/_vimrc/'
+  --xform='s/^.vimrc$/_vimrc/' \
+  .config/nvim/ \
+  .config/wezterm/ \
+  .ctags \
+  .gvimrc \
+  .perltidyrc \
+  .replyrc \
+  .replyrc.pl \
+  .vim/ \
+  .vimrc
+
+echo "$newrev" > "$USERPROFILE/.git_rev.txt"
 
 echo "~/userprofile updated to $newrev"
-hg log --stat --pager never ${oldrev:+-P "${oldrev}"} -r "${oldrev:-$newrev}::$newrev"
+git log --stat "$oldrev".."$newrev"

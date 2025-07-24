@@ -1,9 +1,9 @@
 #!/bin/sh
 set -eu
 
-cd $(hg root)
+cd
 
-SOURCES="${@:-$(hg stat -Aqn -I 'bin/*')}"
+SOURCES="${@:-$(dotfiles git ls-files -- bin/)}"
 MAN1=".man/man1"
 
 mkdir -p $MAN1 || true

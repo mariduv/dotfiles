@@ -39,6 +39,8 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 
+alias dotfiles='GIT_DIR="$HOME/.dotfiles.git" GIT_WORK_TREE="$HOME"'
+
 alias hgcd='cd $(hg root)'
 alias gcd='cd "$(git rev-parse --show-toplevel)"'
 

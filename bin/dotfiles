@@ -1,0 +1,6 @@
+#!/bin/sh
+set -eu
+
+export GIT_DIR="$HOME/.dotfiles.git"
+export GIT_WORK_TREE="$HOME"
+exec "$@"
