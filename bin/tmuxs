@@ -5,7 +5,8 @@ case ${1:-} in *help|-h)
   exec perldoc -T $0;;
 esac
 
-name=${1:-$(basename `pwd`)}
+name="${1:-$(basename "$(pwd)")}"
+name="$(printf %s "$name" | tr -c '[:alnum:]' _)"
 
 if ! tmux has-session -t "$name" 2>/dev/null; then
   tmux new -d -s "$name"
