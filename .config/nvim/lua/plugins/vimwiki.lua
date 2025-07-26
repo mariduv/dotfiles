@@ -1,3 +1,4 @@
+local autocmd = require("config.util").autocmd
 local g = vim.g
 
 g.vimwiki_auto_chdir = 1
@@ -18,6 +19,40 @@ g.vimwiki_list = {
     automatic_nested_syntaxes = 1,
   },
 }
+
+
+-- date header auto added by vimwiki.
+-- auto-copy tomorrow from yesterday would be fun.
+-- luaLS formatting removes trailing ws on those bullets and this annotation
+-- doesn't seem to work anymore
+
+---@format disable-next
+local diary_snippet = [=[
+
+== Tasks ==
+
+- [ ] 
+
+Quick Tasks:
+  - [ ] 
+
+Tomorrow:
+  - 
+
+
+== Schedule ==
+
+
+== Notes ==
+
+]=]
+
+autocmd(
+  vim.api.nvim_create_augroup("vimrc_vimwiki", { clear = true }),
+  "BufNewFile", "*wiki/diary/*.wiki",
+  function() vim.snippet.expand(diary_snippet) end
+)
+
 
 ---@type LazySpec
 return {
