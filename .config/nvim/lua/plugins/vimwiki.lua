@@ -34,16 +34,16 @@ local diary_snippet = [=[
 - [ ] 
 
 Quick Tasks:
-  - [ ] 
+- [ ] 
 
 Tomorrow:
-  - 
 
 
 == Schedule ==
 
 
 == Notes ==
+
 
 ]=]
 
