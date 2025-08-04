@@ -8,23 +8,29 @@ return {
     branch = "master",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-      { "mason-org/mason-lspconfig.nvim", config = true },
+      {
+        "mason-org/mason-lspconfig.nvim",
+        opts = {
+          -- allow view / -R to also stop autostart. no other global flag for this.
+          automatic_enable = not vim.list_contains(vim.v.argv, "-R"),
+        }
+      },
       "b0o/SchemaStore.nvim",
     },
     config = function(_, _)
       local lspconfig = require("lspconfig")
-
       lspconfig.util.default_config.capabilities = vim.tbl_deep_extend("force",
         lspconfig.util.default_config.capabilities,
         require("cmp_nvim_lsp").default_capabilities()
       )
-
-      -- allow view / -R to also stop autostart. no other global flag for this.
-      lspconfig.util.default_config.autostart = not vim.list_contains(vim.v.argv, "-R")
     end,
   },
 
-  { "j-hui/fidget.nvim", event = "LspAttach", config = true },
+  {
+    "j-hui/fidget.nvim",
+    event = "LspAttach",
+    config = true,
+  },
 
   {
     "soulis-1256/eagle.nvim",
