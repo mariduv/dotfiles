@@ -55,5 +55,5 @@ cmd('return', function()
 end)
 
 cmdShift('return', function()
-  os.execute(os.getenv('SHELL') .. ' -l -i -c "goneovim &>/dev/null &"')
+  os.execute(os.getenv('SHELL') .. ' -l -i -c "exec neovide --grid=120x45 &>/dev/null &"')
 end)

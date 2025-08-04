@@ -30,7 +30,9 @@ return {
     "soulis-1256/eagle.nvim",
     event = "LspAttach",
     config = function()
-      vim.go.mousemoveevent = true
+      if not vim.go.mousemoveevent then
+        vim.go.mousemoveevent = true
+      end
       require("eagle").setup({
         border = "rounded",
         max_width_factor = 3,
