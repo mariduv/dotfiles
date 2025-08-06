@@ -21,15 +21,22 @@ return {
         component_separators = "",
       },
       sections = {
-        lualine_a = { "mode" },
-        lualine_b = { "filename" },
-        lualine_c = { "diagnostics" },
+        lualine_a = { "mode", "selectioncount" },
+        lualine_b = { "filename", "searchcount" },
+        lualine_c = { "diagnostics", "diff" },
         lualine_x = { "encoding", "fileformat" },
         lualine_y = { "filetype" },
         lualine_z = { "progress", "location" },
       },
+      inactive_sections = {
+        lualine_c = { { "filename", path = 1 }, "searchcount" },
+        lualine_x = { "filetype", "location" },
+      },
       tabline = {
-        lualine_a = { { "buffers", mode = 4, show_filename_only = false } },
+        lualine_a = {
+          { "buffers", mode = 4, show_filename_only = false, use_mode_colors = true },
+        },
+        lualine_y = { "lsp_status" },
         lualine_z = { "branch" },
       },
       extensions = { "quickfix" },
