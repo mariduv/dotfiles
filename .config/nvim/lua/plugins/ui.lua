@@ -39,7 +39,11 @@ return {
         lualine_y = { "lsp_status" },
         lualine_z = { "branch" },
       },
-      extensions = { "quickfix" },
+      extensions = {
+        "quickfix", "neo-tree", "nvim-dap-ui",
+        -- local
+        "tagbar"
+      },
     },
   },
 
