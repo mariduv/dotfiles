@@ -8,6 +8,7 @@ vim.bo.buflisted = false
 vim.wo.conceallevel = 2
 vim.wo.concealcursor = "n"
 vim.wo.wrap = false
+vim.wo.winfixbuf = true
 
 -- easy close
 vim.keymap.set("n", "q", "<C-w>q", { buffer = true })
