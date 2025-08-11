@@ -1,16 +1,9 @@
 local g = vim.g
 
--- >> Viewdoc
-g.no_viewdoc_abbrev = 1
-g.viewdoc_open = "topleft new"
-g.viewdoc_winwidth_max = 100
-
 g.neo_tree_remove_legacy_commands = 1
 
 ---@type LazySpec
 return {
-  { "powerman/vim-plugin-viewdoc", event = "VeryLazy" },
-
   {
     "nvim-lualine/lualine.nvim",
     opts = {

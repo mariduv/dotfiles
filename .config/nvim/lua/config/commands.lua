@@ -5,6 +5,7 @@ local util = require("config.util")
 util.calias({
   -- replace default:
   grep = "Grep",
+  help = 'topleft help',
 
   -- typos:
   Q = "q",
@@ -12,12 +13,6 @@ util.calias({
   W = "w",
   gcd = "Gcd",
   hgcd = "Hgcd",
-
-  -- Make the ! versions default to stay in one window + buffer:
-  doc = "ViewDoc!",
-  help = "ViewDocHelp!",
-  man = "ViewDocMan!",
-  perldoc = "ViewDocPerl!",
 })
 
 command("Hgcd", function()

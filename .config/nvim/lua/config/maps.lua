@@ -66,9 +66,6 @@ map("n", "<leader><leader>k", ":call UncolorAllWords()<CR>")
 -- use Grep for a recursive *
 map("n", "g*", ":Grep<CR>", "Recursive keyword search")
 
--- K: doc, gKK: doc current filename
-map("n", "gKK", ":call ViewDoc('doc', expand('%:p'))<CR>", "ViewDoc current buffer")
-
 -- Tabular shortcuts
 map({ "n", "v" }, "<leader>ta", ":Tabularize first_arrow<CR>", "Align =>")
 map({ "n", "v" }, "<leader>te", ":Tabularize first_eq<CR>", "Align =")
