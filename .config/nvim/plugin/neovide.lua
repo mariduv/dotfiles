@@ -26,7 +26,7 @@ local change_scale_factor = function(delta)
   vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
 end
 
-if vim.fn.has('mac') then
+if vim.fn.has('mac') == 1 then
   vim.o.guifont = "DejaVu Sans Mono:h12"
 
   vim.g.neovide_input_macos_option_key_is_meta = 'only_left'

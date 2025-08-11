@@ -11,7 +11,7 @@ g.tagbar_autoclose = 1
 g.tagbar_autofocus = 1
 g.tagbar_compact = 1
 g.tagbar_width = 30
-if vim.fn.has("mac") then
+if vim.fn.has("mac") == 1 then
   vim.g.tagbar_ctags_bin = "/opt/homebrew/bin/ctags"
 end
 
