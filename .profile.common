@@ -46,10 +46,6 @@ alias gcd='cd "$(git rev-parse --show-toplevel)"'
 
 source ~/.lib/sh/venv_wrapper.sh
 
-vg() {
-  $EDITOR -c "Grep ${@:?No pattern provided.}"
-}
-
 man() {
   command env \
     LESS_TERMCAP_md=$'\e[36m' \

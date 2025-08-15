@@ -52,6 +52,11 @@ zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f
 
 source ~/.profile.common
 
+# moved out of common bc =() is zsh only
+function vg() {
+  $EDITOR -q =(ag --vimgrep ${@:?No pattern provided.}) +copen
+}
+
 if [ -f ~/.zshrc.local ]; then
   source ~/.zshrc.local
 fi
