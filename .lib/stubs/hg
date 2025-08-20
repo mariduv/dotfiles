@@ -1,0 +1,11 @@
+#!/bin/sh
+set -eu
+
+install_it() {
+  # note to self, stubs invoking mise never rerun, mise puts its paths ahead of
+  # the stub dir
+  mise use -g pipx "pipx:mercurial[pipx_args=--preinstall hg-evolve --preinstall hg-git]"
+}
+
+. ~/.lib/sh/stubexec.sh
+

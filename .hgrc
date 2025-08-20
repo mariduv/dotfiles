@@ -4,9 +4,12 @@ merge       = vimdiff3
 logtemplate = "{logcust}"
 
 [extensions]
+evolve =
+hggit =
+histedit =
 rebase =
 shelve =
-histedit =
+topic =
 
 [pager]
 pager = LESS='FSRXi' less
@@ -32,5 +35,4 @@ git      = true
 showfunc = true
 
 %include ~/.hgrc.logtemplates
-%include ~/.hgext/hgrc
 %include ~/.hgrc.local
