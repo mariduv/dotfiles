@@ -1,15 +1,11 @@
 #!/bin/bash
 set -euo pipefail
 
-if [ ! -d ~/.local/pipx/venvs/ipykernel ]; then
-  pipx install --include-deps ipykernel
-  pipx inject ipykernel pynvim
-else
-  pipx upgrade --include-injected ipykernel
-fi
+mise use -g pipx
+mise use -g "pipx:jupyter[pipx_args=--include-deps --preinstall pynvim]"
 
-mkdir -p ~/.local/share/jupyter/runtime
-
+# shellcheck disable=SC2016
+mise x pipx:jupyter -- sh -c 'mkdir -p "$(jupyter --runtime-dir)"'
 
 if [ ! -x ~/.local/share/nvim/mason/bin/basedpyright ]; then
   nvim --headless -c 'MasonInstall basedpyright' -c qall

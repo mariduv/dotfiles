@@ -5,6 +5,12 @@ venv() {
   source "$venv_home/$venv/bin/activate"
 }
 
+mise-venv() {
+  local tool="${1:?Please provide tool name}"
+
+  source "$HOME/.local/share/mise/installs/pipx-$tool/latest/venvs/$tool/bin/activate"
+}
+
 lsvenv() {
   local venv_home="${VENV_HOME:-$HOME/.venvs}"
   ls -1 "$venv_home"
@@ -32,5 +38,5 @@ rmvenv() {
     return
   fi
 
-  rm -rf "$venv_home/$venv"
+  rm -rf "$venv_home/${venv:?}"
 }
