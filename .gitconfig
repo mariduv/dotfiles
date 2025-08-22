@@ -43,11 +43,8 @@
 [core]
 	pager = LESS=FSRXi less
 
-[gpg]
-	program = "gpg2"
-
 [merge]
-	tool = vimdiff3
+	tool = nvimdiff3
 	guitool = gvimdiff
 	conflictstyle = diff3
 
