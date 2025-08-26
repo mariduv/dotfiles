@@ -5,6 +5,12 @@ opt=""
 [ -w "$(gem env gemdir)" ] ||
   opt="--user-install"
 
+case "$(uname -s)" in
+  Darwin)
+    brew install pkgconf
+    ;;
+esac
+
 gem install $opt rubygems-requirements-system
 gem install $opt iruby
 
