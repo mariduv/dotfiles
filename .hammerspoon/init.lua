@@ -55,5 +55,9 @@ cmd('return', function()
 end)
 
 cmdShift('return', function()
-  os.execute(os.getenv('SHELL') .. ' -l -i -c "exec neovide --grid=120x45 &>/dev/null &"')
+  local neovide =
+    [[eval "$(mise activate --shims)" && ]] ..
+    [[exec neovide --grid=120x45 &>/dev/null &]]
+
+  os.execute(os.getenv('SHELL') .. [[ -i -c ']] .. neovide .. [[']])
 end)
