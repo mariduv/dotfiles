@@ -19,7 +19,7 @@ local function focusTo(direction)
 end
 
 local function findOrLaunch(a)
-  return hs.application.find(a) or hs.application.open(a, 3)
+  return hs.application.get(a) or hs.application.open(a, 3)
 end
 
 -- and the key bindings
@@ -49,9 +49,8 @@ cmdCtrl('left', function() focusedWindow():moveOneScreenWest() end)
 cmdCtrl('right', function() focusedWindow():moveOneScreenEast() end)
 
 cmd('return', function()
-  local a = findOrLaunch('iTerm')
+  local a = findOrLaunch('com.github.wez.wezterm')
   a:selectMenuItem({ "Shell", "New Window" })
-  a:activate()
 end)
 
 cmdShift('return', function()

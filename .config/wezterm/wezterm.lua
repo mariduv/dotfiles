@@ -2,6 +2,7 @@ local wezterm = require 'wezterm'
 local c = wezterm.config_builder()
 
 local is_windows = wezterm.target_triple:match("windows")
+local is_mac = wezterm.target_triple:match("darwin")
 
 c.font = wezterm.font_with_fallback {
   'DejaVu Sans Mono',
@@ -9,7 +10,12 @@ c.font = wezterm.font_with_fallback {
   'Consolas',
   'Menlo',
 }
+
 c.font_size = 10.0
+if is_mac then
+  c.font_size = 12.0
+end
+
 c.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 c.freetype_load_target = "Light"
 
@@ -19,8 +25,24 @@ c.cursor_blink_ease_out = 'Constant'
 
 c.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 
-c.window_padding = { left = 7, right = 7, top = 7, bottom = 7 }
+c.window_padding = {
+  left = '0.5cell', right = '0.5cell',
+  top = '0.4cell', bottom = '0.4cell',
+}
 c.initial_cols, c.initial_rows = 120, 35
+
+c.colors = { background = "#080808" }
+if is_mac then
+  -- there is no frame at all otherwise, but this misses the corners.
+  c.window_frame = {
+    border_left_width = 1,
+    border_right_width = 1,
+    border_bottom_height = 1,
+    border_left_color = "#262626",
+    border_right_color = "#262626",
+    border_bottom_color = "#262626",
+  }
+end
 
 if is_windows then
   -- c.default_prog = { 'pwsh.exe' }
@@ -39,9 +61,9 @@ if is_windows then
   c.prefer_egl = true
 end
 
-local ok, wezterm_local = pcall(require, "wezterm_local")
+local ok, m = pcall(require, "wezterm_local")
 if ok then
-  wezterm_local.apply(c)
+  m.apply(c)
 end
 
 return c
