@@ -6,7 +6,7 @@ mise use -g pipx
 mise use -g "jupyter[pipx_args=--include-deps --preinstall pynvim]"
 
 # shellcheck disable=SC2016
-mise x pipx:jupyter -- sh -c 'mkdir -p "$(jupyter --runtime-dir)"'
+mise x jupyter -- sh -c 'mkdir -p "$(jupyter --runtime-dir)"'
 
 if [ ! -x ~/.local/share/nvim/mason/bin/basedpyright ]; then
   nvim --headless -c 'MasonInstall basedpyright' -c qall
