@@ -1,8 +1,9 @@
 #!/bin/bash
 set -euo pipefail
 
+mise -C ~ alias set jupyter pipx:jupyter
 mise use -g pipx
-mise use -g "pipx:jupyter[pipx_args=--include-deps --preinstall pynvim]"
+mise use -g "jupyter[pipx_args=--include-deps --preinstall pynvim]"
 
 # shellcheck disable=SC2016
 mise x pipx:jupyter -- sh -c 'mkdir -p "$(jupyter --runtime-dir)"'
