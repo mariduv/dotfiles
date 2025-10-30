@@ -21,6 +21,8 @@ if [ -f ~/.zgen/zgen.zsh ]; then
   fi
 fi
 
+add-zsh-hook -d precmd omz_termsupport_cwd
+
 KEYTIMEOUT=25
 REPORTTIME=5
 HISTORY_IGNORE="ls|cd|cd {-,..}|pwd|exit|date|privim*|cht.sh*"
