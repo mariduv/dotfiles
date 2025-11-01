@@ -35,6 +35,7 @@ require("lazy").setup({
   },
   concurrency = 4,
   change_detection = { enabled = false },
+  rocks = { enabled = false },
   defaults = { version = "*" },
   lockfile = vim.fn.stdpath("state") .. "/lazy-lock.json",
   local_spec = false,  -- don't load .lazy.lua files
