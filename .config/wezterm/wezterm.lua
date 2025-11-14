@@ -46,6 +46,25 @@ if is_mac then
   }
 end
 
+-- 1) make click on link without modifier only copy it
+wezterm.on('open-uri', function(window, _, uri)
+  local mods, _ = window:keyboard_modifiers()
+  if mods == 'NONE' then
+    window:copy_to_clipboard(uri)
+    return false
+  end
+  -- fallthrough to regular open-uri
+end)
+
+-- 2) add super+left because the default shift-left doesn't work
+c.mouse_bindings = {
+  {
+    event = { Up = { streak = 1, button = 'Left' } },
+    mods = 'SUPER',
+    action = wezterm.action.CompleteSelectionOrOpenLinkAtMouseCursor("ClipboardAndPrimarySelection")
+  }
+}
+
 -- on Intel Iris Xe graphics, there's artifacting unless you use `prefer_egl`
 -- or `front_end = "WebGpu"`.  WebGpu renders fonts too heavy though.
 -- Also, I think prefer_egl is the -intended- default?
