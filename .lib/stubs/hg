@@ -1,7 +1,6 @@
 #!/bin/sh
 set -eu
 
-mise -C ~ alias set mercurial "pipx:mercurial"
-mise use -g pipx "mercurial[pipx_args=--preinstall hg-evolve --preinstall hg-git]"
+mise use -g pipx mercurial
 
-exec mise x pipx:mercurial -- hg "$@"
+exec mise x mercurial -- hg "$@"

@@ -4,3 +4,6 @@ jobs = 2
 [env]
 RUBY_CONFIGURE_OPTS = "--enable-install-doc"
 RUBY_MAKE_OPTS = "-j2"
+
+[alias]
+mercurial = "pipx:mercurial[pipx_args=--preinstall hg-evolve --preinstall hg-git]"
