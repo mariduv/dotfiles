@@ -60,3 +60,8 @@ cmdShift('return', function()
 
   os.execute(os.getenv('SHELL') .. [[ -i -c ']] .. neovide .. [[']])
 end)
+
+local ok, m = pcall(require, "local")
+if ok then
+  m.apply(cmd, cmdShift, cmdCtrl)
+end
