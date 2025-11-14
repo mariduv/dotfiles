@@ -6,4 +6,5 @@ RUBY_CONFIGURE_OPTS = "--enable-install-doc"
 RUBY_MAKE_OPTS = "-j2"
 
 [alias]
+jupyter = "pipx:jupyter[pipx_args=--include-deps --preinstall pynvim]"
 mercurial = "pipx:mercurial[pipx_args=--preinstall hg-evolve --preinstall hg-git]"

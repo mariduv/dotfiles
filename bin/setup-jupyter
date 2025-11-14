@@ -1,9 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
-mise -C ~ alias set jupyter pipx:jupyter
-mise use -g pipx
-mise use -g "jupyter[pipx_args=--include-deps --preinstall pynvim]"
+mise use -g pipx jupyter
+# The default injections are tucked into ~/.config/mise/conf.d/base.toml
 
 # shellcheck disable=SC2016
 mise x jupyter -- sh -c 'mkdir -p "$(jupyter --runtime-dir)"'
