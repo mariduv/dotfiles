@@ -22,6 +22,7 @@ if [ -f ~/.zgen/zgen.zsh ]; then
 fi
 
 add-zsh-hook -d precmd omz_termsupport_cwd
+printf "\033]7;file://${HOME}\033\\"
 
 KEYTIMEOUT=25
 REPORTTIME=5
