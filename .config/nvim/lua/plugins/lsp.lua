@@ -1,8 +1,5 @@
 ---@type LazySpec
 return {
-  -- mason is nonlazy so my executable tests work
-  { "mason-org/mason.nvim", config = true },
-
   {
     "neovim/nvim-lspconfig",
     branch = "master",
@@ -99,6 +96,7 @@ return {
         end
       end
 
+      ---@diagnostic disable-next-line:unused-local
       lutil.on_setup = chain(lutil.on_setup, function(config, user_config)
         config.on_new_config = chain(config.on_new_config, devc.on_new_config)
       end)

@@ -1,56 +1,5 @@
-local g = vim.g
-
--- >> Perl
-g.perl_include_pod = 1
-g.perl_sub_signatures = 1
-g.perl_sync_dist = 300
-g.perl_compiler_force_warnings = 0
-
 ---@type LazySpec
 return {
-  {
-    "nvim-treesitter/nvim-treesitter",
-    dependencies = {
-      "RRethy/nvim-treesitter-endwise",
-    },
-    event = "VeryLazy",
-    build = ":TSUpdate",
-    cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
-    config = function()
-      ---@diagnostic disable-next-line: missing-fields
-      require("nvim-treesitter.configs").setup({
-        highlight = {
-          enable = true,
-          disable = { "perl" },
-        },
-        indent = { enable = true },
-        endwise = { enable = true },
-        auto_install = true,
-        ensure_installed = {
-          "c",
-          "comment",
-          "diff",
-          "eex",
-          "elixir",
-          "go",
-          "heex",
-          "lua",
-          "perl",
-          "pod",
-          "python",
-          "regex",
-          "ruby",
-          "surface",
-          "sql",
-          "vim",
-          "vimdoc",
-        },
-      })
-      vim.api.nvim_set_hl(0, "@keyword.pod", { link = "MoreMsg" })
-      vim.api.nvim_set_hl(0, "@markup.raw.pod", { link = "PreProc" })
-    end,
-  },
-
   {
     "folke/lazydev.nvim",
     ft = "lua",
@@ -64,8 +13,18 @@ return {
 
   { "Shougo/vinarise.vim", cmd = "Vinarise" },
   "asciidoc/vim-asciidoc",
-  { "vim-perl/vim-perl", branch = "dev" },
   { "yko/mojo.vim", branch = "master" },
+
+  {
+    "vim-perl/vim-perl",
+    branch = "dev",
+    init = function()
+      vim.g.perl_include_pod = 1
+      vim.g.perl_sub_signatures = 1
+      vim.g.perl_sync_dist = 300
+      vim.g.perl_compiler_force_warnings = 0
+    end,
+  },
 
   -- Because of Elixir/OTP mismatches, this is more reliable than Mason for
   -- elixir-ls

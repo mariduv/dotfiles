@@ -15,6 +15,7 @@ o.breakindentopt = "min:66,shift:2"
 o.conceallevel = 3
 o.diffopt:append("algorithm:patience")
 o.fillchars = "fold: ,vert:│"
+o.foldlevelstart = 99
 o.linebreak = true
 o.listchars = "tab:⇥·,trail:◼,nbsp:◻,extends:»,precedes:«"
 o.number = false
