@@ -1,7 +1,3 @@
-local g = vim.g
-
-g.neo_tree_remove_legacy_commands = 1
-
 ---@type LazySpec
 return {
   {

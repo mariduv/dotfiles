@@ -1,10 +1,5 @@
-vim.g.molten_auto_init_behavior = "raise"
-vim.g.molten_auto_open_output = false
-vim.g.molten_virt_text_output = true
-vim.g.molten_wrap_output = true
-
 -- local setup: bin/setup-jupyter-venv
---   creates ~/.venvs/neovim, used automatically for nvim remote plugins
+--   creates mise-pipx-jupyter install, used automatically for nvim remote plugins
 -- :MoltenInit explicitly
 
 ---@type LazySpec
@@ -20,6 +15,7 @@ return {
       codeRunner = { default_method = "molten" },
     },
   },
+
   {
     "benlubas/molten-nvim",
     branch = "main",
@@ -41,6 +37,12 @@ return {
     config = function()
       vim.api.nvim_set_hl(0, "MoltenCell", {link = "DiffChange"})
       vim.api.nvim_set_hl(0, "MoltenVirtualText", {link = "MoreMsg"})
+    end,
+    init = function()
+      vim.g.molten_auto_init_behavior = "raise"
+      vim.g.molten_auto_open_output = false
+      vim.g.molten_virt_text_output = true
+      vim.g.molten_wrap_output = true
     end
   },
 }
