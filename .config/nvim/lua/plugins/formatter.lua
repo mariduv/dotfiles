@@ -5,7 +5,6 @@ return {
     event = "VeryLazy",
     opts = {
       formatters_by_ft = {
-        lua = { "stylua" },
         mail = { "pandoc_markdown" },
         markdown = { "pandoc_markdown" },
         perl = { "perltidy" },
@@ -15,6 +14,7 @@ return {
         -- LSP-handled:
         -- elixir = { "mix" },
         -- go = { "goimports", "gofumpt" },
+        -- lua = { "stylua" },
       },
       formatters = {
         pandoc_markdown = {
