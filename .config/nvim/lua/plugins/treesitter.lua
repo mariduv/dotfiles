@@ -2,15 +2,17 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    branch = "main",
     build = ":TSUpdate",
-    lazy = false,
     dependencies = {
-      -- tree-sitter-cli via mason.nvim
       "RRethy/nvim-treesitter-endwise",
     },
     opts = {
-      highlight = { disable = { "perl" } },
+      highlight = {
+        enable = true,
+        disable = { "perl" },
+      },
+      indent = { enable = true },
+      auto_install = true,
       ensure_installed = {
         "c",
         "comment",
@@ -30,43 +32,25 @@ return {
         "vim",
         "vimdoc",
       },
+      parser_install_dir = vim.fn.stdpath("data") .. "/site",
     },
     config = function(_, opts)
-      require("nvim-treesitter").install(opts.ensure_installed)
+      require("nvim-treesitter.configs").setup(opts)
 
       vim.api.nvim_set_hl(0, "@keyword.pod", { link = "MoreMsg" })
       vim.api.nvim_set_hl(0, "@markup.raw.pod", { link = "PreProc" })
 
-      local function activate(buf, language)
-        vim.wo.foldmethod = "expr"
-        vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-        vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-
-        if not vim.tbl_contains(opts.highlight.disable, language) then
-          vim.treesitter.start(buf, language)
-        end
-      end
-
-      local function try_install(buf, language)
-        require("nvim-treesitter").install({language}):await(function()
-          if vim.treesitter.language.add(language) then
-            activate(buf, language)
-          end
-        end)
-      end
-
       vim.api.nvim_create_autocmd("FileType", {
         group = vim.api.nvim_create_augroup("treesitter.setup", { clear = true }),
         callback = function(args)
-          local buf, filetype = args.buf, args.match
-
+          local filetype = args.match
           local language = vim.treesitter.language.get_lang(filetype) or filetype
           if not vim.treesitter.language.add(language) then
-            try_install(buf, language)
             return
           end
 
-          activate(buf, language)
+          vim.wo.foldmethod = "expr"
+          vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
         end,
       })
     end,
