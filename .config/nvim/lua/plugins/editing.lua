@@ -48,7 +48,7 @@ return {
   },
 
   {
-    "majutsushi/tagbar",
+    "preservim/tagbar",
     cmd = "TagbarToggle",
     init = function()
       vim.g.tagbar_autoclose = 1
