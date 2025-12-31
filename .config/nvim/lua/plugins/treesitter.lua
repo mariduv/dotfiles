@@ -33,6 +33,13 @@ return {
       },
     },
     config = function(_, opts)
+      if not vim.fn.executable("tree-sitter") then
+        vim.defer_fn(function ()
+          vim.notify("tree-sitter cli not available", vim.log.levels.WARN)
+        end, 1500)
+        return
+      end
+
       require("nvim-treesitter").install(opts.ensure_installed)
 
       vim.api.nvim_set_hl(0, "@keyword.pod", { link = "MoreMsg" })
