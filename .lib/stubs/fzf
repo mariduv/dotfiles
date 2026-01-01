@@ -1,3 +1,2 @@
-#!/usr/bin/env -S mise tool-stub
-tool = "fzf"
-version = "latest"
+#!/bin/sh
+exec mise x fzf -- fzf "$@"

@@ -1,3 +1,2 @@
-#!/usr/bin/env -S mise tool-stub
-tool = "mercurial"
-version = "latest"
+#!/bin/sh
+exec mise x mercurial -- hg "$@"

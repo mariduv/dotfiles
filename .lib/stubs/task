@@ -1,3 +1,2 @@
-#!/usr/bin/env -S mise tool-stub
-tool = "task"
-version = "latest"
+#!/bin/sh
+exec mise x task -- task "$@"

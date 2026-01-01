@@ -1,3 +1,2 @@
-#!/usr/bin/env -S mise tool-stub
-tool = "direnv"
-version = "latest"
+#!/bin/sh
+exec mise x direnv -- direnv "$@"

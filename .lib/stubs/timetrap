@@ -1,3 +1,2 @@
-#!/usr/bin/env -S mise tool-stub
-tool = "gem:timetrap"
-version = "latest"
+#!/bin/sh
+exec mise x gem:timetrap -- timetrap "$@"

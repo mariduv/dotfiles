@@ -1,3 +1,2 @@
-#!/usr/bin/env -S mise tool-stub
-tool = "shfmt"
-version = "latest"
+#!/bin/sh
+exec mise x shfmt -- shfmt "$@"

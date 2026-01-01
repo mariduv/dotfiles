@@ -1,3 +1,2 @@
-#!/usr/bin/env -S mise tool-stub
-tool = "gotags"
-version = "latest"
+#!/bin/sh
+exec mise x gotags -- gotags "$@"

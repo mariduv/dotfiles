@@ -1,3 +1,2 @@
-#!/usr/bin/env -S mise tool-stub
-tool = "gem:asciidoctor"
-version = "latest"
+#!/bin/sh
+exec mise x gem:asciidoctor -- asciidoctor "$@"
