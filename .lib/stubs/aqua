@@ -1,8 +1,3 @@
-#!/bin/sh
-set -eu
-
-install_it() {
-  bina_install "aquaproj/aqua"
-}
-
-. ~/.lib/sh/stubexec.sh
+#!/usr/bin/env -S mise tool-stub
+tool = "aqua"
+version = "latest"

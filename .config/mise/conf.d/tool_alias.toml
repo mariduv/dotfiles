@@ -1,0 +1,4 @@
+[tool_alias]
+gotags = "go:github.com/jstemmer/gotags"
+jupyter = "pipx:jupyter[pipx_args=--include-deps --preinstall pynvim]"
+mercurial = "pipx:mercurial[pipx_args=--preinstall hg-evolve --preinstall hg-git]"

@@ -1,11 +1,3 @@
-#!/bin/sh
-set -eu
-
-install_it() {
-  [ -w "$(gem env gemdir)" ] ||
-    opt="--user-install"
-
-  gem install -q ${opt:-} asciidoctor
-}
-
-. ~/.lib/sh/stubexec.sh
+#!/usr/bin/env -S mise tool-stub
+tool = "gem:asciidoctor"
+version = "latest"

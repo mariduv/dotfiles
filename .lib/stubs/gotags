@@ -1,8 +1,3 @@
-#!/bin/sh
-set -eu
-
-install_it() {
-  go install github.com/jstemmer/gotags@latest
-}
-
-. ~/.lib/sh/stubexec.sh
+#!/usr/bin/env -S mise tool-stub
+tool = "gotags"
+version = "latest"
