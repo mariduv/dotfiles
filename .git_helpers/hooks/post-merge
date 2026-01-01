@@ -1,2 +1,0 @@
-#!/bin/sh
-git ctags hook 2>/dev/null
