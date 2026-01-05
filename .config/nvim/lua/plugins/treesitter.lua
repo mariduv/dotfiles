@@ -56,7 +56,13 @@ return {
       end
 
       local function try_install(buf, language)
-        require("nvim-treesitter").install({language}):await(function()
+        local ts = require("nvim-treesitter")
+
+        if not vim.list_contains(ts.get_available(), language) then
+          return
+        end
+
+        ts.install({language}):await(function()
           if vim.treesitter.language.add(language) then
             activate(buf, language)
           end
