@@ -29,14 +29,14 @@ return {
       { "<leader>dj", function() require("dap").down() end,                                                 desc = "Down" },
       { "<leader>dk", function() require("dap").up() end,                                                   desc = "Up" },
       { "<leader>dL", function() require("dap").run_last() end,                                             desc = "Run Last" },
-      { "<leader>dO", function() require("dap").step_out() end,                                             desc = "Step Out" }, -- switched o/O from lazyvim
-      { "<leader>do", function() require("dap").step_over() end,                                            desc = "Step Over" },
+      { "<leader>do", function() require("dap").step_out() end,                                             desc = "Step Out" },
+      { "<leader>ds", function() require("dap").step_over() end,                                            desc = "Step Over" },
       { "<leader>dp", function() require("dap").pause() end,                                                desc = "Pause" },
       { "<leader>dr", function() require("dap").repl.toggle() end,                                          desc = "Toggle REPL" },
-      { "<leader>ds", function() vim.print(require("dap").session()) end,                                   desc = "Session" },
+      { "<leader>dS", function() vim.print(require("dap").session()) end,                                   desc = "Session Info" },
       { "<leader>dD", function() require("dap").disconnect() end,                                           desc = "Disconnect" },
       { "<leader>dT", function() require("dap").terminate() end,                                            desc = "Terminate" },
-      { "<leader>dw", function() require("dap.ui.widgets").hover() end,                                     desc = "Widgets" },
+      { "<leader>dK", function() require("dap.ui.widgets").hover() end,                                     desc = "Hover" },
     },
     cmd = { "DapContinue", "DapNew" },
     config = function()
