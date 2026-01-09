@@ -5,6 +5,7 @@ return {
     dependencies = {
       {
         "rcarriga/nvim-dap-ui",
+        branch = "master",
         dependencies = { "nvim-neotest/nvim-nio" },
         -- stylua: ignore
         keys = {
