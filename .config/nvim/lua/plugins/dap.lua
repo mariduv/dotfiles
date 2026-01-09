@@ -3,78 +3,11 @@ return {
   {
     "mfussenegger/nvim-dap",
     dependencies = {
-      {
-        "rcarriga/nvim-dap-ui",
-        branch = "master",
-        dependencies = { "nvim-neotest/nvim-nio" },
-        -- stylua: ignore
-        keys = {
-          { "<leader>du", function() require("dapui").toggle({}) end, desc = "Dap UI" },
-          { "<leader>de", function() require("dapui").eval() end,     desc = "Eval",  mode = { "n", "v" } },
-        },
-        opts = {
-          controls = {
-            icons = {
-              disconnect = "[d]",
-              pause = "[p]",
-              play = "[c]",
-              run_last = "[l]",
-              step_back = "[u]",
-              step_into = "[i]",
-              step_out = "[O]",
-              step_over = "[o]",
-              terminate = "[t]",
-            }
-          }
-        },
-        config = function(_, opts)
-          local dap = require("dap")
-          local dapui = require("dapui")
-          dapui.setup(opts)
-          dap.listeners.after.event_initialized.dapui_config = function()
-            dapui.open({})
-          end
-        end,
-      },
+      "rcarriga/nvim-dap-ui",
       { "theHamsta/nvim-dap-virtual-text", config = true },
 
       { "suketa/nvim-dap-ruby",            config = true },
-      {
-        "leoluz/nvim-dap-go",
-        config = function()
-          local dap = require("dap")
-          require("dap-go").setup({
-            dap_configurations = {
-              {
-                type = "go",
-                name = "Attach port",
-                mode = "remote",
-                request = "attach",
-                host = "localhost",
-                port = function()
-                  local port = vim.fn.input("Target port: ", "4000")
-                  return (port and port ~= "") and port or dap.ABORT
-                end
-              },
-            }
-          })
-
-          -- bug workaround: wrap adapter config func to not include "executable" key if remoting
-          ---@diagnostic disable:undefined-field
-          local dap_go_orig = dap.adapters.go
-          dap.adapters.go = function(callback, client_config)
-            if client_config.mode == "remote" then
-              callback({
-                type = "server",
-                host = client_config.host or "127.0.0.1",
-                port = client_config.port or "4000",
-              })
-              return
-            end
-            dap_go_orig(callback, client_config)
-          end
-        end
-      },
+      "leoluz/nvim-dap-go",
       {
         "mfussenegger/nvim-dap-python",
         ft = { "python" },
@@ -125,6 +58,77 @@ return {
           stopOnEntry = false,
         },
       }
+    end
+  },
+
+  {
+    "rcarriga/nvim-dap-ui",
+    branch = "master",
+    dependencies = { "nvim-neotest/nvim-nio" },
+    -- stylua: ignore
+    keys = {
+      { "<leader>du", function() require("dapui").toggle({}) end, desc = "Dap UI" },
+      { "<leader>de", function() require("dapui").eval() end,     desc = "Eval",  mode = { "n", "v" } },
+    },
+    opts = {
+      controls = {
+        icons = {
+          disconnect = "[d]",
+          pause = "[p]",
+          play = "[c]",
+          run_last = "[l]",
+          step_back = "[u]",
+          step_into = "[i]",
+          step_out = "[O]",
+          step_over = "[o]",
+          terminate = "[t]",
+        }
+      }
+    },
+    config = function(_, opts)
+      local dap = require("dap")
+      local dapui = require("dapui")
+      dapui.setup(opts)
+      dap.listeners.after.event_initialized.dapui_config = function()
+        dapui.open({})
+      end
+    end,
+  },
+
+  {
+    "leoluz/nvim-dap-go",
+    config = function()
+      local dap = require("dap")
+      require("dap-go").setup({
+        dap_configurations = {
+          {
+            type = "go",
+            name = "Attach port",
+            mode = "remote",
+            request = "attach",
+            host = "localhost",
+            port = function()
+              local port = vim.fn.input("Target port: ", "4000")
+              return (port and port ~= "") and port or dap.ABORT
+            end
+          },
+        }
+      })
+
+      -- bug workaround: wrap adapter config func to not include "executable" key if remoting
+      ---@diagnostic disable:undefined-field
+      local dap_go_orig = dap.adapters.go
+      dap.adapters.go = function(callback, client_config)
+        if client_config.mode == "remote" then
+          callback({
+            type = "server",
+            host = client_config.host or "127.0.0.1",
+            port = client_config.port or "4000",
+          })
+          return
+        end
+        dap_go_orig(callback, client_config)
+      end
     end
   },
 }
