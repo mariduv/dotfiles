@@ -42,7 +42,11 @@ return {
     config = function()
       local dap = require("dap")
 
-      -- configs also made by nvim-dap-{go,python,ruby} deps above
+      dap.listeners.after.event_initialized.dapui = function()
+        require("dapui").open({})
+      end
+
+      -- configs are also made by nvim-dap-{go,python,ruby} deps above
 
       dap.adapters.codelldb = {
         type = "executable",
@@ -71,29 +75,7 @@ return {
       { "<leader>du", function() require("dapui").toggle({}) end, desc = "Dap UI" },
       { "<leader>de", function() require("dapui").eval() end,     desc = "Eval",  mode = { "n", "v" } },
     },
-    opts = {
-      controls = {
-        icons = {
-          disconnect = "[d]",
-          pause = "[p]",
-          play = "[c]",
-          run_last = "[l]",
-          step_back = "[u]",
-          step_into = "[i]",
-          step_out = "[O]",
-          step_over = "[o]",
-          terminate = "[t]",
-        }
-      }
-    },
-    config = function(_, opts)
-      local dap = require("dap")
-      local dapui = require("dapui")
-      dapui.setup(opts)
-      dap.listeners.after.event_initialized.dapui_config = function()
-        dapui.open({})
-      end
-    end,
+    config = true,
   },
 
   {
