@@ -43,4 +43,4 @@ dotfiles git archive --format=tar @ |
 echo "$newrev" > "$USERPROFILE/.git_rev.txt"
 
 echo "~/userprofile updated to $newrev"
-dotfiles git log --stat "$oldrev".."$newrev"
+dotfiles git log --pretty=onelinecustom --stat "$oldrev".."$newrev"
