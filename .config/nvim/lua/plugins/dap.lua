@@ -5,6 +5,7 @@ return {
     branch = "master",
     dependencies = {
       "rcarriga/nvim-dap-ui",
+      { "Jorenar/nvim-dap-disasm",         config = true },
       { "theHamsta/nvim-dap-virtual-text", config = true },
 
       { "suketa/nvim-dap-ruby",            config = true },
@@ -80,6 +81,7 @@ return {
 
   {
     "leoluz/nvim-dap-go",
+    lazy = true,
     config = function()
       local dap = require("dap")
       require("dap-go").setup({
