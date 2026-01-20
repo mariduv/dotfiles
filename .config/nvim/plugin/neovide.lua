@@ -31,8 +31,8 @@ if vim.fn.has('mac') == 1 then
 
   vim.g.neovide_input_macos_option_key_is_meta = 'only_left'
 
-  vim.keymap.set("n", "<D-=>", function() change_scale_factor(1.25) end)
-  vim.keymap.set("n", "<D-->", function() change_scale_factor(1 / 1.25) end)
+  vim.keymap.set("n", "<D-=>", function() change_scale_factor(1.10) end)
+  vim.keymap.set("n", "<D-->", function() change_scale_factor(1 / 1.10) end)
 
   vim.keymap.set('n', '<D-s>', ':w<CR>') -- Save
   vim.keymap.set('v', '<D-c>', '"+y')    -- Copy
@@ -43,7 +43,7 @@ if vim.fn.has('mac') == 1 then
 else
   vim.o.guifont = "DejaVu Sans Mono:h10"
 
-  vim.keymap.set("n", "<C-=>", function() change_scale_factor(1.25) end)
-  vim.keymap.set("n", "<C-->", function() change_scale_factor(1 / 1.25) end)
+  vim.keymap.set("n", "<C-=>", function() change_scale_factor(1.10) end)
+  vim.keymap.set("n", "<C-->", function() change_scale_factor(1 / 1.10) end)
 end
 
