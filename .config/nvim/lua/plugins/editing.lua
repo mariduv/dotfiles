@@ -65,6 +65,10 @@ return {
     "RRethy/vim-illuminate",
     event = { "BufReadPost", "BufNewFile" },
     opts = {
+      filetype_overrides = {
+        -- gopls runs for gotmpl and the lsp provider is busted for gotmpl-combined files
+        gotmpl = { providers = {"treesitter", "regex"}},
+      },
       delay = 250,
       large_file_cutoff = 15000,
     },
