@@ -1,0 +1,23 @@
+#!/bin/sh
+set -eu
+
+# There's no github Darwin-arm64 binary build.  We can fall back to
+# cargo-binstall which does have Darwin binaries but if something doesn't have
+# binaries it falls back to a proper cargo build, needing rust, so it's not the
+# first thing I want to try for tools.
+
+install_it() {
+  case "$(uname -o)" in
+    Darwin)
+      mise use -g cargo-binstall
+      mise config set tool_alias.git-absorb cargo:git-absorb
+      ;;
+    *)
+      mise config set tool_alias.git-absorb github:tummychow/git-absorb
+      ;;
+  esac
+  mise use -g git-absorb
+  exec mise x git-absorb -- git-absorb "$@"
+}
+
+. ~/.lib/sh/stubexec.sh
