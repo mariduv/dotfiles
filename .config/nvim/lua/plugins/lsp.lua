@@ -3,15 +3,8 @@ return {
   {
     "neovim/nvim-lspconfig",
     branch = "master",
-    event = { "BufReadPre", "BufNewFile" },
+    event = "VeryLazy",
     dependencies = {
-      {
-        "mason-org/mason-lspconfig.nvim",
-        opts = {
-          -- allow view / -R to also stop autostart. no other global flag for this.
-          automatic_enable = not vim.list_contains(vim.v.argv, "-R"),
-        }
-      },
       "b0o/SchemaStore.nvim",
     },
     config = function(_, _)
