@@ -25,8 +25,11 @@ add-zsh-hook -d precmd omz_termsupport_cwd
 printf "\033]7;file://${HOME}\033\\"
 
 KEYTIMEOUT=25
-REPORTTIME=5
 HISTORY_IGNORE="ls|cd|cd {-,..}|pwd|exit|date|privim*|cht.sh*"
+
+REPORTTIME=5
+REPORTMEM=100000
+TIMEFMT="[%U user %S system %P cpu  %*E total | max RSS %M kb] %J"
 
 setopt list_packed
 setopt correct
