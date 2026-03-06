@@ -90,6 +90,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local bmap = mkbmap(args.buf)
 
+    bmap("n", "K", function() vim.lsp.buf.hover({border = "rounded", anchor_bias = "above"}) end, "LSP Hover")
+
     bmap("n", "<leader>ld", vim.diagnostic.setqflist, "List Diagnostics")
     bmap("n", "[d", function() vim.diagnostic.jump({ count = -1 }) end, "Previous Diagnostic")
     bmap("n", "]d", function() vim.diagnostic.jump({ count = 1 }) end, "Next Diagnostic")

@@ -23,21 +23,6 @@ return {
   },
 
   {
-    "soulis-1256/eagle.nvim",
-    event = "LspAttach",
-    config = function()
-      if not vim.go.mousemoveevent then
-        vim.go.mousemoveevent = true
-      end
-      require("eagle").setup({
-        border = "rounded",
-        max_width_factor = 3,
-        max_height_factor = 3,
-      })
-    end,
-  },
-
-  {
     "aznhe21/actions-preview.nvim",
     event = "LspAttach",
     opts = {
