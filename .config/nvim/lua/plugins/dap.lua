@@ -4,16 +4,16 @@ return {
     "mfussenegger/nvim-dap",
     branch = "master",
     dependencies = {
-      "rcarriga/nvim-dap-ui",
-      { "Jorenar/nvim-dap-disasm",         config = true },
       { "theHamsta/nvim-dap-virtual-text", config = true },
 
-      { "suketa/nvim-dap-ruby",            config = true },
+      { "suketa/nvim-dap-ruby", config = true },
       "leoluz/nvim-dap-go",
       {
         "mfussenegger/nvim-dap-python",
         ft = { "python" },
-        config = function() require("dap-python").setup("debugpy-adapter") end
+        config = function()
+          require("dap-python").setup("debugpy-adapter")
+        end,
       },
     },
 
@@ -38,13 +38,15 @@ return {
       { "<leader>dD", function() require("dap").disconnect() end,                                           desc = "Disconnect" },
       { "<leader>dT", function() require("dap").terminate() end,                                            desc = "Terminate" },
       { "<leader>dK", function() require("dap.ui.widgets").hover() end,                                     desc = "Hover" },
+      { "<leader>dv", function() require("dap-view").toggle() end,                                          desc = "Toggle DAP View" },
+      { "<leader>dw", function() require("dap-view").add_expr() end,                                        desc = "Add watch (in session)" },
     },
     cmd = { "DapContinue", "DapNew" },
     config = function()
       local dap = require("dap")
 
-      dap.listeners.after.event_initialized.dapui = function()
-        require("dapui").open({})
+      dap.listeners.after.event_initialized.dapview = function()
+        require("dap-view").open()
       end
 
       -- configs are also made by nvim-dap-{go,python,ruby} deps above
@@ -64,19 +66,39 @@ return {
           stopOnEntry = false,
         },
       }
-    end
+    end,
   },
 
   {
-    "rcarriga/nvim-dap-ui",
-    branch = "master",
-    dependencies = { "nvim-neotest/nvim-nio" },
-    -- stylua: ignore
-    keys = {
-      { "<leader>du", function() require("dapui").toggle({}) end, desc = "Dap UI" },
-      { "<leader>de", function() require("dapui").eval() end,     desc = "Eval",  mode = { "n", "v" } },
+    "igorlfs/nvim-dap-view",
+    lazy = false,
+    version = "1.*",
+    dependencies = {
+      "Jorenar/nvim-dap-disasm",
     },
-    config = true,
+    config = function()
+      local dv = require("dap-view")
+
+      require("dap-disasm").setup({
+        dapview_register = true,
+        dapui_register = false,
+      })
+
+      dv.setup({
+        winbar = {
+          sections = vim.list_extend(
+            vim.list_slice(require("dap-view.config").config.winbar.sections),
+            { "disassembly" }
+          ),
+          controls = { enabled = true },
+        },
+        windows = {
+          terminal = {
+            hide = { "delve" },
+          },
+        },
+      })
+    end,
   },
 
   {
@@ -95,9 +117,9 @@ return {
             port = function()
               local port = vim.fn.input("Target port: ", "4000")
               return (port and port ~= "") and port or dap.ABORT
-            end
+            end,
           },
-        }
+        },
       })
 
       -- bug workaround: wrap adapter config func to not include "executable" key if remoting
@@ -114,6 +136,6 @@ return {
         end
         dap_go_orig(callback, client_config)
       end
-    end
+    end,
   },
 }
