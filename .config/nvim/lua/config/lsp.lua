@@ -1,4 +1,4 @@
-vim.lsp.set_log_level("OFF")
+vim.lsp.log.set_level(vim.log.levels.OFF)
 
 vim.diagnostic.config({
   float = {
