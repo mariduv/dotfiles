@@ -37,6 +37,16 @@ return {
   },
 
   {
+    "folke/snacks.nvim",
+    ---@module 'snacks'
+    ---@type snacks.Config
+    opts = {
+      input = {},
+      picker = {},
+    }
+  },
+
+  {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
     keys = {
