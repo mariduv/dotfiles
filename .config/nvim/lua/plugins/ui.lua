@@ -116,7 +116,11 @@ return {
           default = "•",
         },
       },
-      document_symbols = { follow_cursor = true },
+      document_symbols = {
+        follow_cursor = true,
+        window = { mappings = { ["<F8>"] = "close_window" },
+        },
+      },
     },
   },
 
