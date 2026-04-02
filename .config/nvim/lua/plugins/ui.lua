@@ -104,6 +104,7 @@ return {
       },
     },
     opts = {
+      sources = {"filesystem", "document_symbols"},
       enable_git_status = false,
       window = { mappings = { ["<F2>"] = "close_window" } },
       filesystem = { hijack_netrw_behavior = "disabled" },
@@ -115,6 +116,7 @@ return {
           default = "•",
         },
       },
+      document_symbols = { follow_cursor = true },
     },
   },
 

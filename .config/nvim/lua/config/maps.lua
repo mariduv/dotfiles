@@ -90,7 +90,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local bmap = mkbmap(args.buf)
 
-    bmap("n", "K", function() vim.lsp.buf.hover({border = "rounded", anchor_bias = "above"}) end, "LSP Hover")
+    bmap("n", "K", function() vim.lsp.buf.hover({ border = "rounded", anchor_bias = "above" }) end, "LSP Hover")
 
     bmap("n", "<leader>ld", vim.diagnostic.setqflist, "List Diagnostics")
     bmap("n", "[d", function() vim.diagnostic.jump({ count = -1 }) end, "Previous Diagnostic")
@@ -114,6 +114,18 @@ vim.api.nvim_create_autocmd("LspAttach", {
     bmap("n", "<leader>ih", function()
       vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
     end, "Toggle Inlay Hints")
+
+
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client and client:supports_method("textDocument/documentSymbol", args.buf) then
+      bmap("n", "<F8>", function()
+        require("neo-tree.command").execute({
+          toggle = true,
+          position = "right",
+          source = "document_symbols",
+        })
+      end, "Browse LSP Symbols")
+    end
   end,
 })
 
