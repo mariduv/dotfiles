@@ -1,4 +1,4 @@
-\setenv LESS FSRX~
+\setenv LESS FS~
 
 \set SYNTAX_HL_STYLE catppuccin-mocha
 
