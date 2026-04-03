@@ -53,7 +53,7 @@ if vim.fn.executable("ag") then
 end
 
 -- if a venv for pynvim and jupyter client has been created, use it
-if vim.uv.fs_stat(vim.fn.expand("~/.local/share/mise/installs/pipx-jupyter")) then
+if vim.uv.fs_stat(vim.fn.expand("~/.local/share/mise/installs/jupyter")) then
   vim.g.python3_host_prog =
-    vim.fn.expand("~/.local/share/mise/installs/pipx-jupyter/latest/venvs/jupyter/bin/python3")
+    vim.fn.expand("~/.local/share/mise/installs/jupyter/latest/venvs/jupyter/bin/python3")
 end
