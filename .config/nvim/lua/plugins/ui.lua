@@ -41,8 +41,16 @@ return {
     ---@module 'snacks'
     ---@type snacks.Config
     opts = {
-      input = {},
-      picker = {},
+      input = { icon = ">" },
+      picker = { prompt = "> " },
+      styles = {
+        input = {
+          relative = "cursor",
+          row = -3,
+          col = -5,
+          wo = { winhighlight = "" },
+        }
+      }
     }
   },
 
