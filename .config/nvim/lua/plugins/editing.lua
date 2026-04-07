@@ -2,7 +2,6 @@
 return {
   "godlygeek/tabular",
   "kshenoy/vim-signature",
-  "tomtom/tcomment_vim",
   "tpope/vim-unimpaired",
   "tpope/vim-vinegar",
 
