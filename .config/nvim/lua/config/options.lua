@@ -51,9 +51,3 @@ if vim.fn.executable("ag") then
   o.grepprg = "ag --vimgrep"
   o.grepformat = { "%f:%l:%c:%m", "%f" }
 end
-
--- if a venv for pynvim and jupyter client has been created, use it
-if vim.uv.fs_stat(vim.fn.expand("~/.local/share/mise/installs/jupyter")) then
-  vim.g.python3_host_prog =
-    vim.fn.expand("~/.local/share/mise/installs/jupyter/latest/venvs/jupyter/bin/python3")
-end
