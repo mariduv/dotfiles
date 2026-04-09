@@ -1,7 +1,7 @@
-vim.g.mapleader = "\\"
-vim.g.maplocalleader = "\\"
+local g, o = vim.g, vim.opt
 
-local o = vim.opt
+g.mapleader = "\\"
+g.maplocalleader = "\\"
 
 -- Editing
 o.expandtab = true
@@ -51,3 +51,7 @@ if vim.fn.executable("ag") then
   o.grepprg = "ag --vimgrep"
   o.grepformat = { "%f:%l:%c:%m", "%f" }
 end
+
+-- Builtin plugin
+g.netrw_altfile = 1
+g.netrw_use_errorwindow = 0

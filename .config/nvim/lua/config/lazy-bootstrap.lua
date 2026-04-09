@@ -31,7 +31,7 @@ require("lazy").setup({
         vim.cmd("colorscheme kanagawa")
       end,
     },
-    { import = "plugins" },
+    { import = "config.lazy-plugins" },
   },
   concurrency = 4,
   change_detection = { enabled = false },
