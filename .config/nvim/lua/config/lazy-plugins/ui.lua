@@ -96,7 +96,7 @@ return {
     branch = "v3.x",
     cmd = "Neotree",
     dependencies = {
-      "nvim-lua/plenary.nvim",
+      { "nvim-lua/plenary.nvim", branch = "master" },
       "MunifTanjim/nui.nvim",
       {
         "s1n7ax/nvim-window-picker",

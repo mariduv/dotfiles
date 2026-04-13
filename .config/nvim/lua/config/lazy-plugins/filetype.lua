@@ -27,7 +27,11 @@ return {
   },
 
   -- Because of Elixir/OTP mismatches, this is more reliable than Mason for
-  -- elixir-ls
+  -- elixir-ls.
+  --
+  -- Note to self: "expert" official ls released 0.1.0 and resolves the
+  -- mismatch problem but isn't fully-featured yet. elixir-tools doesn't have
+  -- specific support for it yet either
   {
     "elixir-tools/elixir-tools.nvim",
     ft = { "elixir", "eelixir", "heex" },
@@ -51,8 +55,6 @@ return {
         },
       })
     end,
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
+    dependencies = { "nvim-lua/plenary.nvim" },
   },
 }
