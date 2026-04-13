@@ -74,7 +74,7 @@ return {
         }, {
           { name = "nvim_lsp" },
         }, {
-          { name = "buffer", option = { keyword_pattern = [[\k\+]] } },
+          { name = "buffer", option = { keyword_pattern = [[\k\{3,}]] } },
           { name = "path" },
         }, {
           { name = "tags" },
