@@ -115,6 +115,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
     end, "Toggle Inlay Hints")
 
+    bmap("n", "grL", function()
+      vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled())
+    end, "Toggle Code Lenses")
 
     local client = vim.lsp.get_client_by_id(args.data.client_id)
     if client and client:supports_method("textDocument/documentSymbol", args.buf) then
