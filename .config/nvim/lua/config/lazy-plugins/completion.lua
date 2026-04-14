@@ -3,10 +3,11 @@ return {
   {
     "hrsh7th/nvim-cmp",
     branch = "main",
-    event = "InsertEnter",
+    event = {"InsertEnter", "CmdlineEnter"},
     dependencies = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-calc",
+      "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-path",
       "quangnguyen30192/cmp-nvim-tags",
@@ -74,7 +75,13 @@ return {
         }, {
           { name = "nvim_lsp" },
         }, {
-          { name = "buffer", option = { keyword_pattern = [[\k\{3,}]] } },
+          {
+            name = "buffer",
+            option = {
+              keyword_pattern = [[\k\{3,}]],
+              max_indexed_line_length = 1024,
+            }
+          },
           { name = "path" },
         }, {
           { name = "tags" },
@@ -86,6 +93,18 @@ return {
         "confirm_done",
         require("nvim-autopairs.completion.cmp").on_confirm_done()
       )
+
+      cmp.setup.cmdline({ "/", "?" }, {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({ { name = "buffer" } }),
+      })
+      cmp.setup.cmdline(":", {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({ { name = "path" }, { name = "cmdline" } }),
+        ---@diagnostic disable-next-line: missing-fields
+        matching = { disallow_symbol_nonprefix_matching = false },
+        formatting = { fields = { "abbr" } },
+      })
     end,
   },
 }
