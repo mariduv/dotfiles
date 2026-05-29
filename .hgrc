@@ -5,7 +5,6 @@ logtemplate = "{logcust}"
 
 [extensions]
 evolve =
-hggit =
 histedit =
 rebase =
 shelve =
