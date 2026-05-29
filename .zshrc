@@ -31,11 +31,12 @@ REPORTTIME=5
 REPORTMEM=100000
 TIMEFMT="[%U user %S system %P cpu  %*E total | max RSS %M kb] %J"
 
-setopt list_packed
 setopt correct
 setopt hist_reduce_blanks
 setopt hist_save_no_dups
 setopt interactive_comments
+setopt list_packed
+setopt transient_rprompt
 
 fpath=(~/.lib/zsh/ $fpath)
 
