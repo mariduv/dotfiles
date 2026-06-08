@@ -72,6 +72,8 @@ map({ "n", "v" }, "<leader>te", ":Tabularize first_eq<CR>", "Align =")
 map({ "n", "v" }, "<leader>tc", ":Tabularize first_colon<CR>", "Align :")
 map({ "n", "v" }, "<leader>tm", ":Tabularize methods<CR>", "Align -> or .")
 
+map({ "n", "x" }, "<leader>f", function() require("conform").format({ async = true }) end, "Format")
+
 map("n", "<leader>a", function()
   local fo = vim.bo.formatoptions
   if fo:find("a") then
@@ -106,10 +108,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     bmap("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, "Add Workspace Folder")
     bmap("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, "Remove Workspace Folder")
     bmap("n", "<leader>wl", function() vim.print(vim.lsp.buf.list_workspace_folders()) end, "List Workspace Folders")
-
-    bmap({ "n", "x" }, "<leader>f", function()
-      vim.lsp.buf.format({ async = true })
-    end, "LSP Format")
 
     bmap("n", "<leader>ih", function()
       vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
