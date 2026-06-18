@@ -23,10 +23,7 @@ command("Hgcd", function()
 end, {})
 
 command("Gcd", function()
-  local root = fn.systemlist("git rev-parse --show-toplevel 2>/dev/null")[1]
-  if vim.v.shell_error == 0 then
-    cmd.cd(root)
-  end
+    cmd.cd(require("snacks").git.get_root())
 end, {})
 
 command("Grep", function(ctx)
