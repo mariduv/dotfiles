@@ -6,6 +6,8 @@ set main-view-date-local = true
 set main-view-author-maxwidth = 25
 
 set blame-view-date-local = true
+set blame-view-date-display = custom
+set blame-view-date-format = %Y-%m-%d
 set blame-view-file-name-display = false
 set blame-view-author-maxwidth = 10
 
