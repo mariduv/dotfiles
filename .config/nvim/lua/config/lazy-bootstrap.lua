@@ -17,14 +17,19 @@ require("lazy").setup({
         statementStyle = { bold = false },
         colors = {
           theme = {
+            wave = {
+              ui = { bg = "none" },
+            },
             all = {
-              ui = {
-                bg = "none",
-                bg_gutter = "none",
-              },
+              ui = { bg_gutter = "none" },
             },
           },
         },
+        overrides = function(colors)
+          return {
+            LspCodeLens = { fg = colors.palette.boatYellow1 },
+          }
+        end,
       },
       config = function(_, opts)
         require("kanagawa").setup(opts)
@@ -38,7 +43,7 @@ require("lazy").setup({
   rocks = { enabled = false },
   defaults = { version = "*" },
   lockfile = vim.fn.stdpath("state") .. "/lazy-lock.json",
-  local_spec = false,  -- don't load .lazy.lua files
+  local_spec = false, -- don't load .lazy.lua files
   performance = {
     rtp = {
       disabled_plugins = {
