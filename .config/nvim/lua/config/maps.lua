@@ -103,7 +103,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     bmap("n", "grd", vim.lsp.buf.definition, "Go to Definition")
     bmap("n", "grt", vim.lsp.buf.type_definition, "Go to Type Definition")
 
-    bmap("i", "<C-S>", vim.lsp.buf.signature_help, "Toggle Signature Help")
+    -- default C-s replaced by lsp_signature.nvim
 
     bmap("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, "Add Workspace Folder")
     bmap("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, "Remove Workspace Folder")
