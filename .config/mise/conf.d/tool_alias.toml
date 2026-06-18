@@ -2,4 +2,5 @@
 delve     = "go:github.com/go-delve/delve/cmd/dlv"
 gotags    = "go:github.com/jstemmer/gotags"
 jupyter   = "pipx:jupyter[pipx_args=--include-deps --preinstall pynvim]"
+mdformat  = "pipx:mdformat[pipx_args=--preinstall mdformat-gfm --preinstall mdformat-front-matters --preinstall mdformat-slw]"
 mercurial = "pipx:mercurial[pipx_args=--preinstall hg-evolve]"
