@@ -142,4 +142,25 @@ return {
       replace = { key = {} },
     },
   },
+
+  {
+    "andythigpen/nvim-coverage",
+    cmd = {
+      "Coverage",
+      "CoverageLoad",
+      "CoverageToggle",
+    },
+    opts = {
+      auto_reload = true,
+      load_coverage_cb = function(_)
+        vim.g.signcolumn = "auto"
+        for _, winnr in ipairs(vim.api.nvim_list_wins()) do
+            vim.wo[winnr].signcolumn = "auto"
+        end
+      end,
+      lang = {
+        go = { coverage_file = "cover.out" },
+      },
+    }
+  }
 }
