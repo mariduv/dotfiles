@@ -1,0 +1,53 @@
+# Halloy config.
+# For a complete list of available options,
+# please visit https://halloy.chat/configuration
+
+theme = "rose-pine"
+
+
+[servers.ramdas]
+nickname = "meredith"
+server = "ramdas.roomag.org"
+
+[servers.ramdas.sasl.plain]
+username = "meredith"
+password_keyring = true
+
+
+[buffer.nickname]
+alignment = "right"
+
+[sidebar]
+position = "top"
+
+[sidebar.highlight_indicator]
+icon = "star"
+
+
+[buffer.nickname.hide_consecutive]
+enabled = { smart = 120 }
+show_after_previews = true
+
+[buffer.server_messages]
+join.smart = 900
+part.smart = 900
+quit.smart = 900
+change_nick.smart = 900
+away.smart = 300
+
+[buffer.internal_messages]
+success.smart = 300
+error.smart = 300
+
+
+[actions.buffer]
+click_channel_name = "replace-pane"
+click_highlight = "replace-pane"
+click_nickname = "replace-pane"
+join_channel = "replace-pane"
+open_internal = "replace-pane"
+message_channel = "replace-pane"
+message_user = "replace-pane"
+
+[actions.sidebar]
+buffer = "replace-pane"

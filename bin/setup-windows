@@ -26,10 +26,12 @@ fi
 
 dotfiles git archive --format=tar @ |
   tar x -C "$USERPROFILE" --show-transformed-names \
+  --xform='s/^.config\/halloy\//AppData\/Roaming\/halloy\//' \
   --xform='s/^.config\/nvim\//AppData\/Local\/nvim\//' \
   --xform='s/^.gvimrc$/_gvimrc/' \
   --xform='s/^.vim\//vimfiles\//' \
   --xform='s/^.vimrc$/_vimrc/' \
+  .config/halloy/ \
   .config/nvim/ \
   .config/wezterm/ \
   .ctags \
