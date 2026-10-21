@@ -14,6 +14,10 @@ username = "meredith"
 password_keyring = true
 
 
+[logs]
+file_level = "warn"
+
+
 [buffer.nickname]
 alignment = "right"
 
