@@ -58,7 +58,7 @@ man() {
 }
 
 alias tmux-env='eval "$(tmux show-environment -s)"'
-alias :e=$EDITOR
+alias :e=\$EDITOR
 alias :q=exit
 
 if [ -f ~/.profile.common.local ]; then
